@@ -3,33 +3,6 @@ from tkinter import *
 from tkinter.ttk import *
 from tkinter import messagebox
 
-def submit():
-  if paket.get() == 0 :
-    messagebox.showerror("Error","Silahkan pilih satu paket")
-  else:
-    global nomer
-    nomer = StringVar()
-    window3 = tk.Toplevel()
-    window3.geometry('250x200')
-    window3.minsize(250, 200)
-    window3.maxsize(250, 200)
-    window3.iconphoto(False, icon)
-    window3.title("Konfirmasi")
-    Label(window3, text = 'Masukkan no HP anda').pack(side = TOP, pady = 10)
-    noHP = tk.Entry(window3, textvariable=nomer)
-    noHP.pack()
-    quit_button = Button(window3, text= "CANCEL", command= window3.destroy).place(x=90, y=130)
-    btn1 = Button(window3, command = konfirmasi, text="SUBMIT").place(x=90, y=100)
-    window3.mainloop()
-
-
-def konfirmasi():
-  if len(nomer.get()) <= 10 :
-    messagebox.showerror("Error", "Masukan nomer HP yang valid")
-  else :
-    pesan = "Pembayaran anda telah diambil dari nomer " + nomer.get()
-    messagebox.showinfo("Konfirmasi", pesan)
-
 def pilihN():
   global paket
   paket = IntVar()
@@ -49,7 +22,6 @@ def pilihN():
   btn1 = Button(window2, command = submit, text="SUBMIT").place(x=90, y=120)
   window2.iconphoto(False, icon)
   window2.mainloop()
-  window2.destroy()
   
 
 def pilihD():
@@ -62,7 +34,7 @@ def pilihD():
   window2.title("Paket Disney+")
   Label(window2, text = 'Pilih Paket', font =('Verdana', 15)).pack(side = TOP, pady = 10)
   quit_button = Button(window2, text= "CANCEL", command= window2.destroy).place(x=90, y=150)
-  paket1 = Radiobutton(window2, text= "Rp. 20.000 (Langganan 1 bulan)", variable= paket, value = 1,)
+  paket1 = Radiobutton(window2, text= "Rp. 20.000 (Langganan 1 bulan)", variable= paket, value = 1)
   paket2 = Radiobutton(window2, text= "Rp. 49.000 (Langganan 3 bulan)", variable= paket, value = 2)
   paket3 = Radiobutton(window2, text= "Rp. 79.000 (Langganan 6 bulan)", variable= paket, value = 3)
   paket1.pack()
@@ -83,7 +55,7 @@ def pilihS():
   Label(window2, text = 'Pilih Paket', font =(
   'Verdana', 15)).pack(side = TOP, pady = 10)
   quit_button = Button(window2, text= "TUTUP", command= window2.destroy).place(x=90, y=150)
-  paket1 = Radiobutton(window2, text= "Rp. 2.500 (Langganan 1 Hari)", variable= paket, value = 1,)
+  paket1 = Radiobutton(window2, text= "Rp. 2.500 (Langganan 1 Hari)", variable= paket, value = 1)
   paket2 = Radiobutton(window2, text= "Rp. 54.900 (Langganan 2 Bulan)", variable= paket, value = 2)
   paket3 = Radiobutton(window2, text= "Rp. 153.000 (Langganan 6 Bulan)", variable= paket, value = 3)
   paket1.pack()
@@ -93,7 +65,31 @@ def pilihS():
   window2.iconphoto(False, icon)
   window2.mainloop()
 
+def submit():
+  if paket.get() == 0 :
+    messagebox.showerror("Error","Silahkan pilih satu paket")
+  else:
+    global nomer
+    nomer = StringVar()
+    window3 = tk.Toplevel()
+    window3.geometry('250x200')
+    window3.minsize(250, 200)
+    window3.maxsize(250, 200)
+    window3.iconphoto(False, icon)
+    window3.title("Konfirmasi")
+    Label(window3, text = 'Masukkan no HP anda').pack(side = TOP, pady = 10)
+    noHP = tk.Entry(window3, textvariable=nomer)
+    noHP.pack()
+    quit_button = Button(window3, text= "CANCEL", command= window3.destroy).place(x=90, y=130)
+    btn1 = Button(window3, command = konfirmasi, text="SUBMIT").place(x=90, y=100)
+    window3.mainloop()
 
+def konfirmasi():
+  if len(nomer.get()) <= 10 :
+    messagebox.showerror("Error", "Masukan nomer HP yang valid")
+  else :
+    pesan = "Pembayaran anda telah diambil dari nomer " + nomer.get()
+    messagebox.showinfo("Konfirmasi", pesan)
 
 root = Tk()
 root.minsize(500, 200)
